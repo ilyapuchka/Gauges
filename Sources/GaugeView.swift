@@ -285,7 +285,11 @@ open class GaugeCircleLayer: CALayer {
 
     func circlePath(bounds: CGRect, lineWidth: CGFloat) -> CGPath {
         let path = UIBezierPath()
-        path.addArc(withCenter: CGPoint(x: bounds.midX, y: bounds.midY), radius: bounds.width/2 - lineWidth/2, startAngle: -.pi/2, endAngle: -(.pi/2 + 2 * .pi), clockwise: false)
+        if gauge.direction == .clockwise {
+            path.addArc(withCenter: CGPoint(x: bounds.midX, y: bounds.midY), radius: bounds.width/2 - lineWidth/2, startAngle: -(gauge.startAngle + 2 * .pi), endAngle: -gauge.startAngle, clockwise: true)
+        } else {
+            path.addArc(withCenter: CGPoint(x: bounds.midX, y: bounds.midY), radius: bounds.width/2 - lineWidth/2, startAngle: -gauge.startAngle, endAngle: -(gauge.startAngle + 2 * .pi), clockwise: false)
+        }
         return path.cgPath
     }
 
@@ -297,18 +301,27 @@ public struct Gauge {
         case solid(UIColor)
     }
 
+    public enum Direction {
+        case clockwise
+        case counterClockwise
+    }
+
     public var value: Float
     public var color: Color
     public var radius: CGFloat
     public var lineWidth: CGFloat
     public var backgroundColor: UIColor
+    public var direction: Direction
+    public var startAngle: CGFloat
 
-    public init(value: Float = 0, color: Color = .solid(.black), radius: CGFloat = 0, lineWidth: CGFloat = 20, backgroundColor: UIColor = .lightGray) {
+    public init(value: Float = 0, color: Color = .solid(.black), radius: CGFloat = 0, lineWidth: CGFloat = 20, backgroundColor: UIColor = .lightGray, direction: Direction = .clockwise, startAngle: CGFloat = .pi/2) {
         self.value = value
         self.color = color
         self.radius = radius
         self.lineWidth = lineWidth
         self.backgroundColor = backgroundColor
+        self.direction = direction
+        self.startAngle = startAngle
     }
 }
 

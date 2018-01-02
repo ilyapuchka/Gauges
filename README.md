@@ -14,11 +14,18 @@ struct Gauge {
         case solid(UIColor)
     }
 
+    enum Direction {
+        case clockwise
+        case counterClockwise
+    }
+
     var value: Float
     var color: Color
     var radius: CGFloat
     var lineWidth: CGFloat
     var backgroundColor: UIColor
+    var direction: Direction
+    var startAngle: CGFloat
 
 }
 
