@@ -57,6 +57,6 @@ gaugeView.gauges[0].value = 0.5
 
 `UIVisualEffectView` was used for gradient shadow, which comes with some limitations:
 
-    - everything that you put behind `GagueView` will be blurred, to avoid that set it an opaque background color
-    - you can not change shadow radius after it was set for the first time when you use `.blur` shadow color
-    - you may notice some color artifacts on the edges of `GaugeView` even if you use solid background color
+  - everything that you put behind `GagueView` will be blurred, to avoid that set it an opaque background color
+  - you can not change shadow radius after it was set for the first time when you use `.blur` shadow color
+  - you may notice some color artifacts on the edges of `GaugeView` even if you use solid background color
