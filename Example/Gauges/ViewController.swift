@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     @objc @IBAction func radiusChanged(_ slider: UISlider) {
         gaugeView.gauges[0].radius = 60 + CGFloat(slider.value) * 60
         gaugeView.gauges[1].radius = 90 + CGFloat(slider.value) * 90
-        gaugeView.gauges[1].radius = 120 + CGFloat(slider.value) * 120
+        gaugeView.gauges[2].radius = 120 + CGFloat(slider.value) * 120
         gaugeView.sizeToFit()
     }
 
@@ -45,15 +45,27 @@ class ViewController: UIViewController {
     @IBOutlet weak var gaugeView: GaugeView! {
         didSet {
             gaugeView.gauges = [
-                Gauge(value: 0, color: .gradient([(.yellow, 0), (.orange, 1)]), radius: 60, lineWidth: 15),
-                Gauge(value: 0, color: .gradient([(.cyan, 0), (.green, 1)]), radius: 90, lineWidth: 15),
-                Gauge(value: 0, color: .gradient([(.blue, 0), (.magenta, 1)]), radius: 120, lineWidth: 15)
+                Gauge(color: .gradient([(.yellow, 0), (.orange, 1)]),
+                      radius: 60,
+                      lineWidth: 15,
+                      backgroundColor: .gradient([(UIColor.yellow.withAlphaComponent(0.1), 0), (UIColor.orange.withAlphaComponent(0.1), 1)])
+                ),
+                Gauge(color: .gradient([(.cyan, 0), (.green, 1)]),
+                      radius: 90,
+                      lineWidth: 15,
+                      backgroundColor: .gradient([(UIColor.cyan.withAlphaComponent(0.1), 0), (UIColor.green.withAlphaComponent(0.1), 1)])
+                ),
+                Gauge(color: .gradient([(.blue, 0), (.magenta, 1)]),
+                      radius: 120,
+                      lineWidth: 15,
+                      backgroundColor: .gradient([(UIColor.blue.withAlphaComponent(0.1), 0), (UIColor.magenta.withAlphaComponent(0.1), 1)])
+                )
             ]
             gaugeView.shadow = Shadow(color: .blur)
 //            gaugeView.gauges = [
-//                Gauge(value: 0, color: .solid(.orange), radius: 60, lineWidth: 15),
-//                Gauge(value: 0, color: .solid(.green), radius: 90, lineWidth: 15),
-//                Gauge(value: 0, color: .solid(.magenta), radius: 120, lineWidth: 15)
+//                Gauge(color: .solid(.orange), radius: 60, lineWidth: 15),
+//                Gauge(color: .solid(.green), radius: 90, lineWidth: 15),
+//                Gauge(color: .solid(.magenta), radius: 120, lineWidth: 15)
 //            ]
 //            gaugeView.shadow = Shadow(color: .colors([.orange, .green, .magenta]))
         }

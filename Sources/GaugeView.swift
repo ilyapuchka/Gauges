@@ -76,7 +76,7 @@ open class GaugeView: UIControl {
 
                 var backgroundGauge = gauge
                 backgroundGauge.value = 1
-                backgroundGauge.color = .solid(gauge.backgroundColor)
+                backgroundGauge.color = gauge.backgroundColor
                 gaugeCircles.background.gauge = backgroundGauge
             }
 
@@ -198,10 +198,8 @@ open class GaugeCircleLayer: CALayer {
             CATransaction.begin()
             CATransaction.setDisableActions(true)
 
-            if gauge.lineWidth != oldValue.lineWidth {
-                maskLayer.lineWidth = gauge.lineWidth
-                maskLayer.path = circlePath(bounds: bounds, lineWidth: gauge.lineWidth)
-            }
+            maskLayer.lineWidth = gauge.lineWidth
+            maskLayer.path = circlePath(bounds: bounds, lineWidth: gauge.lineWidth)
             maskLayer.strokeEnd = CGFloat(gauge.value)
 
             switch gauge.color {
@@ -310,11 +308,11 @@ public struct Gauge {
     public var color: Color
     public var radius: CGFloat
     public var lineWidth: CGFloat
-    public var backgroundColor: UIColor
+    public var backgroundColor: Color
     public var direction: Direction
     public var startAngle: CGFloat
 
-    public init(value: Float = 0, color: Color = .solid(.black), radius: CGFloat = 0, lineWidth: CGFloat = 20, backgroundColor: UIColor = .lightGray, direction: Direction = .clockwise, startAngle: CGFloat = .pi/2) {
+    public init(value: Float = 0, color: Color = .solid(.black), radius: CGFloat = 0, lineWidth: CGFloat = 20, backgroundColor: Color = .solid(.lightGray), direction: Direction = .clockwise, startAngle: CGFloat = .pi/2) {
         self.value = value
         self.color = color
         self.radius = radius
