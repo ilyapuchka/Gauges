@@ -23,7 +23,7 @@ struct Gauge {
     var color: Color
     var radius: CGFloat
     var lineWidth: CGFloat
-    var backgroundColor: UIColor
+    var backgroundColor: Color
     var direction: Direction
     var startAngle: CGFloat
 
