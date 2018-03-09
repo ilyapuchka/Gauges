@@ -67,3 +67,7 @@ gaugeView.gauges[0].value = 0.5
   - everything that you put behind `GagueView` will be blurred, to avoid that set it an opaque background color
   - you can not change shadow radius after it was set for the first time when you use `.blur` shadow color
   - you may notice some color artifacts on the edges of `GaugeView` even if you use solid background color
+  
+  ### Used by
+  
+  [Aconta: income and expenses](https://itunes.apple.com/us/app/aconta-income-and-expenses/id1301129130?ls=1&mt=8)
